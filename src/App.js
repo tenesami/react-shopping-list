@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import MyList from './MyList'
+
+//import './App.css';
+
+const names = ['Tesfay', 'Alem', 'Samuel', 'Michael', 'Natinael']
+
+class App extends Component {
+
+    handleClick(){
+        console.log("Hello There")
+    }
+    render() {
+        const family = names.map((name, i) => <MyList name={name} key={i} handleOnClick={this.handleClick}/>)
+        return (
+            <div className="App" >
+                
+                <h2> hello Family </h2>
+                <ul>
+                   {family} 
+                </ul>
+            
+            </div >
+        );
+    };
+
 }
 
 export default App;
