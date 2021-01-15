@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 
 import {ShopList } from './ShopList';
 
+import Form from './Form'
 
  class MyList extends Component {
      constructor(props){
          super(props)
          this.state = {
-            list:
-             [
-              {id: "1", title: "Hello"},
-             {id: "2", title: "World"}
-            ]
+            list:[
+                 ]
          }  
      }
 
@@ -24,14 +22,27 @@ import {ShopList } from './ShopList';
              }
          })
      }
+
+     addNewShop = (data) => {
+         //console.log(data)
+         const newShop = {
+             id: this.state.list.length +1,
+             title: data.title
+         }
+         this.setState(prevState => ({
+            list: [...prevState.list, newShop]
+         }))
+
+     }
      render(){
-         const {list} = this.state 
-         const shopLists = list.map(item => {
+        // const {list} = this.state 
+         const shopLists = this.state.list.map(item => {
              return <ShopList  id={item.id} title={item.title} handleOnDelete={this.handleDelete}/> 
          })
          return (
             <div>
-                {shopLists}
+                 <Form handleDataOnSubmit={this.addNewShop} /><br/>
+                {shopLists} 
             </div>
          )
         }
